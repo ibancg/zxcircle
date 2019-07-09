@@ -1,30 +1,29 @@
 
-Description
-===========
+## ZXCircle - A fast circle algorithm for ZX Spectrum
 
 Graphic routine in assembler (Z80) for drawing circles with ZX Spectrum.
 
+<img align="right" src="https://ibancg.github.io/images/circle_1.png">
 
-Compiling
-=========
+## Compiling
 
 The source code is a .asm text file that can be compiled with a z80 assembler
-like pasmo http://pasmo.speccy.org/ (you can use other assemblers, but some of
-them ignore the ORG directives, so be careful with the relocations). With pasmo
-you can generate directly a .tap file ready to be loaded in an spectrum
-emulator (http://www.worldofspectrum.org/emulators.html). More about tape file
+like [Pasmo](http://pasmo.speccy.org/). You can use other assemblers, but some of
+them ignore the `ORG` directives, so be careful with the relocations. With _Pasmo_
+you can generate directly a _.tap_ file ready to be loaded in a [Spectrum
+Emulator](http://www.worldofspectrum.org/emulators.html). More about tape file
 formats in http://www.worldofspectrum.org/formats.html.
 
 
-Code Explanation
-================
+## The Code
 
-The code contains two main functions: one for drawing pixels and another one for
-drawing circles. Also, the file includes an execution example placed at the
-address 53000, that draws a set of concentric circles growing in size.
+The [code](zxcircle.asm) contains two main functions: one for drawing pixels, labeled as `plot`
+and another one for drawing circles, labeled `circle`. Also, the file includes an
+execution example placed at the address 53000, that draws a set of concentric
+circles growing in size.
 
-For drawing pixels, two lookup tables are used: tabpow2, with powers of 2, and
-tablinidx, with the order of the 192 screen lines (remember that the ZX spectrum
+For drawing pixels, two lookup tables are used: `tabpow2`, with powers of 2, and
+`tablinidx`, with the order of the 192 screen lines (remember that the ZX spectrum
 used an interlaced access).
 
 You can invoke the routine by placing the point coordinates at the addresses
@@ -46,13 +45,11 @@ POKE 51999, 80
 RANDOMIZE USR 52000
 ```
 
-Running the Test Program
-========================
+## Running the Test Program
 
-In this video, http://www.youtube.com/watch?v=sdccAInujFU, you can see the
-execution of the following code under Spectemu emulator
-(http://spectemu.sourceforge.net/), comparing the performance of the two
-algorithms.
+In [this video](http://www.youtube.com/watch?v=sdccAInujFU) you can see the
+execution of the following code under [Spectemu emulator](http://spectemu.sourceforge.net/),
+comparing the performance of the two algorithms.
 
 ```
 10 FOR i=1 TO 20
@@ -61,3 +58,7 @@ algorithms.
 40 RANDOMIZE USR 53000
 ```
 
+## Resources
+
+* Algorithm explanation in [my github.io page](https://ibancg.github.io/A-fast-circle-algorithm-for-ZX-Spectrum/)
+* [Eexample video](http://www.youtube.com/watch?v=sdccAInujFU)
