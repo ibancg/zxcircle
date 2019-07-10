@@ -3,25 +3,26 @@
 
 Graphic routine in assembler (Z80) for drawing circles with ZX Spectrum.
 
+This code was written in 2000, for pure fun and as just an exercise.
+
 <img align="right" src="https://ibancg.github.io/images/circle_1.png">
 
 ## Compiling and running the code
 
 The source code is a `.asm` text file that can be compiled with a **Z80 assembler**
-like [Pasmo](http://pasmo.speccy.org/), and run in a **Spectrum emulator** like
-[Spectemu](http://spectemu.sourceforge.net/). You can use other assemblers, but with
+like [Pasmo](http://pasmo.speccy.org/), and run in a **Spectrum emulator** like the
+[Qaop/JS](http://torinak.com/qaop) online emulator. You can use other assemblers, but with
 _Pasmo_ you can [directly generate a _.tap_ file](http://pasmo.speccy.org/pasmodoc.html),
-ready to be loaded in the emulator. Both tools have Debian packages, so
-for Debian-based distributions we can install them by:
+ready to be loaded in the emulator. For Debian-based distributions we can install it by:
 
 ```console
-$ sudo apt-get install pasmo spectemu-x11
+$ sudo apt-get install pasmo
 ```
 
-To run the assembler:
+Run the assembler with the `--tap` or the `--tapbas`:
 
 ```console
-$ pasmo -v --tap zxcircle.asm zxcircle.tap
+$ pasmo -v --tapbas zxcircle.asm zxcircle.tap
 
 Loading file: zxcircle.asm in 0
 Finished loading file: zxcircle.asm in 235
@@ -32,23 +33,14 @@ Pass 2 finished
 
 ```
 
-and then we can load the `.tap` in _Spectemu_:
-
-```console
-$ xspect zxcircle.tap
-```
-
-and inside Spectemu we will have to type
+Then we can load the `.tap` in _Qaop_ and run the example code:
 
 ```
-LOAD "" CODE
+RANDOMIZE USR 53000
 ```
 
-and press `F6` to resume the tape (check other options with `Ctrl+h`).
-
-Now we are ready to run the code. In [this video](http://www.youtube.com/watch?v=sdccAInujFU)
-you can see the execution of the following code under _Spectemu_, comparing the performance of
-the two algorithms.
+In [this video](http://www.youtube.com/watch?v=sdccAInujFU)
+you can see a performance comparison of both the original and new algorithms.
 
 ```
 10 FOR i=1 TO 20
@@ -57,9 +49,15 @@ the two algorithms.
 40 RANDOMIZE USR 53000
 ```
 
-## The Code
+You can [try it online with Qaop/JS](http://torinak.com/qaop#l=https://raw.githubusercontent.com/ibancg/zxcircle/master/zxcircle.z80), just run the following command once inside:
 
-The [code](zxcircle.asm) contains two main functions: one for drawing pixels, labeled as `plot`,
+```
+RUN
+```
+
+## A deeper look into the code
+
+The file [zxcircle.asm](zxcircle.asm) contains two main functions: one for drawing pixels, labeled as `plot`,
 and another one for drawing circles, labeled `circle`. Also, the file includes an
 execution example placed at the address _53000_, that draws a set of concentric
 circles growing in size.
@@ -89,5 +87,6 @@ RANDOMIZE USR 52000
 
 ## Resources
 
-* Algorithm explanation in [my github.io page](https://ibancg.github.io/A-fast-circle-algorithm-for-ZX-Spectrum/)
-* [Eexample video](http://www.youtube.com/watch?v=sdccAInujFU)
+* Algorithm explanation in [my github.io page](https://ibancg.github.io/A-fast-circle-algorithm-for-ZX-Spectrum/).
+* Example [video](https://youtu.be/sdccAInujFU) running under Spectemu.
+* [Try it online with Qaop/JS](http://torinak.com/qaop#l=https://raw.githubusercontent.com/ibancg/zxcircle/master/zxcircle.z80).
