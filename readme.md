@@ -59,9 +59,9 @@ the two algorithms.
 
 ## The Code
 
-The [code](zxcircle.asm) contains two main functions: one for drawing pixels, labeled as `plot`
+The [code](zxcircle.asm) contains two main functions: one for drawing pixels, labeled as `plot`,
 and another one for drawing circles, labeled `circle`. Also, the file includes an
-execution example placed at the address `53000`, that draws a set of concentric
+execution example placed at the address _53000_, that draws a set of concentric
 circles growing in size.
 
 For drawing pixels, two lookup tables are used: `tabpow2`, with powers of 2, and
@@ -69,7 +69,7 @@ For drawing pixels, two lookup tables are used: `tabpow2`, with powers of 2, and
 used an interlaced access).
 
 You can invoke the routine by placing the point coordinates at the addresses
-`50998` and `50999`, and jumping to the address `51000`
+_50998_ and _50999_, and jumping to the address _51000_
 
 ```
 POKE 50998, 128
@@ -77,8 +77,8 @@ POKE 50999, 88
 RANDOMIZE USR 51000
 ```
 
-To invoke the circle routine, you must place the center coordinates at `51997`
-and `51998`, and the radius at `51999`, and then jump to the address `52000`.
+To invoke the circle routine, you must place the center coordinates at _51997_
+and _51998_, and the radius at _51999_, and then jump to the address _52000_.
 
 ```
 POKE 51997, 128
